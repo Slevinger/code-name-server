@@ -24,6 +24,11 @@ app.get("/", (req, res) => {
   res.send("code name");
 });
 
+app.use((req, res, next) => {
+  console.log(req);
+  next();
+});
+
 app.post("/games/:nickname", (req, res) => {
   const { nickname } = req.params;
   const game = gamesControl.createGame(nickname);
