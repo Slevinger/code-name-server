@@ -98,8 +98,9 @@ const Socket = server => {
         //
       });
 
-      socket.on("sendMessage", message => {
-        io.emit("message", message);
+      socket.on("sendMessage", ({ gameId, nickname, message }, callback) => {
+        io.to(gameId).emit("message", { nickname, message });
+        callback();
       });
       console.log("new web socket connection");
 
