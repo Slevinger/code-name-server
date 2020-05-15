@@ -1,7 +1,7 @@
 const getWords = wordCount => {
   const selectedWords = {};
   while (wordCount > 0) {
-    let wordIndex = Math.floor(15496 * Math.random());
+    let wordIndex = Math.floor(398 * Math.random());
     let word = words[wordIndex];
     if (!selectedWords[word]) {
       selectedWords[word] = 1;
