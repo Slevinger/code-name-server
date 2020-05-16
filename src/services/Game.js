@@ -1,6 +1,7 @@
 const createBoard = require("./createBoard");
 
 const newTeam = () => ({
+  lose: false,
   score: 0,
   players: []
 });
@@ -86,8 +87,12 @@ class Game {
     if (this.board) {
       this.board[cellIndexes].showColor = true;
       this.board[cellIndexes].flipTeam = this.whosTurn;
-      this.teams[this.board[cellIndexes].color].score +=
-        this.board[cellIndexes].color === this.whosTurn ? 1 : 0;
+      if (this.board[cellIndexes].color === "black") {
+        this.teams[this.whosTurn].lose = true;
+        this.teams[this.whosTurn].score = -999;
+      } else {
+        this.teams[this.board[cellIndexes].color].score += 1;
+      }
     }
   }
 
