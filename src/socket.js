@@ -107,7 +107,7 @@ const Socket = server => {
       });
 
       socket.on("sendMessage", ({ gameId, nickname, message }, callback) => {
-        io.to(gameId).broadcast.emit("message", { nickname, message });
+        io.to(gameId).emit("message", { nickname, message });
         callback();
       });
       console.log("new web socket connection");
