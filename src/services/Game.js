@@ -86,7 +86,7 @@ class Game {
     if (this.board) {
       this.board[cellIndexes].showColor = true;
       this.board[cellIndexes].flipTeam = this.whosTurn;
-      this.teams[this.whosTurn].score +=
+      this.teams[this.board[cellIndexes].color].score +=
         this.board[cellIndexes].color === this.whosTurn ? 1 : 0;
     }
   }
