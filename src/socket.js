@@ -75,7 +75,12 @@ const Socket = server => {
         const shoulShowColor =
           game.teams[player.teamColor].players.length ===
           teams[player.teamColor].players.reduce((acc, nick) => {
-            return acc + (players[nick].selectedCell === cellIndexes ? 1 : 0);
+            return (
+              acc +
+              (players[nick] && players[nick].selectedCell === cellIndexes
+                ? 1
+                : 0)
+            );
           }, 0);
         if (shoulShowColor) {
           game.colorCell(cellIndexes);
