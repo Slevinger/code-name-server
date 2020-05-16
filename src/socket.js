@@ -70,33 +70,36 @@ const Socket = server => {
       socket.on("cellSelected", ({ gameId, nickname, cellIndexes }) => {
         const game = gamesControl.getGame(gameId);
         const { players, teams } = game;
+
         const player = players[nickname];
-        player.selectedCell = cellIndexes;
-        const shoulShowColor =
-          game.teams[player.teamColor].players.length ===
-          teams[player.teamColor].players.reduce((acc, nick) => {
-            return (
-              acc +
-              (players[nick] && players[nick].selectedCell === cellIndexes
-                ? 1
-                : 0)
-            );
-          }, 0);
-        if (shoulShowColor) {
-          game.colorCell(cellIndexes);
-          game.resetClicks();
-          if (game.board[cellIndexes].color === "black") {
-            // player.teamColor lose
-          } else if (game.board[cellIndexes].color === player.teamColor) {
-            game.setNumberOfWords(game.numberOfWords - 1);
-          } else {
-            game.setNumberOfWords(0);
+        if (player) {
+          player.selectedCell = cellIndexes;
+          const shoulShowColor =
+            game.teams[player.teamColor].players.length ===
+            teams[player.teamColor].players.reduce((acc, nick) => {
+              return (
+                acc +
+                (players[nick] && players[nick].selectedCell === cellIndexes
+                  ? 1
+                  : 0)
+              );
+            }, 0);
+          if (shoulShowColor) {
+            game.colorCell(cellIndexes);
+            game.resetClicks();
+            if (game.board[cellIndexes].color === "black") {
+              // player.teamColor lose
+            } else if (game.board[cellIndexes].color === player.teamColor) {
+              game.setNumberOfWords(game.numberOfWords - 1);
+            } else {
+              game.setNumberOfWords(0);
+            }
+            if (game.numberOfWords <= 0) {
+              game.switchTeams();
+            }
           }
-          if (game.numberOfWords <= 0) {
-            game.switchTeams();
-          }
+          gameChange(gameId, game);
         }
-        gameChange(gameId, game);
 
         // see if all players in the team have the same selected cell
         // if so color it if it is colored change turn
