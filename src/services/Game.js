@@ -14,7 +14,7 @@ class Game {
   whosTurn;
   numberOfWords;
   hinters;
-  qlue;
+  clue;
   extraGuess;
   otherTeam;
 
@@ -74,8 +74,8 @@ class Game {
     }
   }
 
-  setQlue(qlue) {
-    this.qlue = qlue;
+  setClue(clue) {
+    this.clue = clue;
   }
   setNumberOfWords(numberOfWords) {
     this.numberOfWords = numberOfWords;
@@ -100,7 +100,7 @@ class Game {
     const nextTeam = this.otherTeam;
     this.otherTeam = this.whosTurn;
     this.whosTurn = nextTeam;
-    this.setQlue("");
+    this.setClue("");
     this.setNumberOfWords(0);
   }
 
