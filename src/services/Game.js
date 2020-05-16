@@ -82,11 +82,11 @@ class Game {
   }
 
   colorCell(cellIndexes) {
-    if (this.board) {
-      this.board[cellIndexes].showColor = true;
-      this.board[cellIndexes].flipTeam = this.whosTurn;
+    if (this.board && this.board.cellsMap) {
+      this.board.cellsMap[cellIndexes].showColor = true;
+      this.board.cellsMap[cellIndexes].flipTeam = this.whosTurn;
       this.teams[this.whosTurn].score +=
-        this.board[cellIndexes].color === this.whosTurn ? 1 : 0;
+        this.board.cellsMap[cellIndexes].color === this.whosTurn ? 1 : 0;
     }
   }
 

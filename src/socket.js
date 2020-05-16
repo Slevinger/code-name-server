@@ -87,9 +87,11 @@ const Socket = server => {
           if (shoulShowColor) {
             game.colorCell(cellIndexes);
             game.resetClicks();
-            if (game.board[cellIndexes].color === "black") {
+            if (game.board.cellsMap[cellIndexes].color === "black") {
               // player.teamColor lose
-            } else if (game.board[cellIndexes].color === player.teamColor) {
+            } else if (
+              game.board.cellsMap[cellIndexes].color === player.teamColor
+            ) {
               game.setNumberOfWords(game.numberOfWords - 1);
             } else {
               game.setNumberOfWords(0);
