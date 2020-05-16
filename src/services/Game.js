@@ -17,6 +17,7 @@ class Game {
   clue;
   extraGuess;
   otherTeam;
+  options;
 
   constructor(gameAdmin) {
     this.gameId = Math.random()
@@ -82,11 +83,11 @@ class Game {
   }
 
   colorCell(cellIndexes) {
-    if (this.board && this.board.cellsMap) {
-      this.board.cellsMap[cellIndexes].showColor = true;
-      this.board.cellsMap[cellIndexes].flipTeam = this.whosTurn;
+    if (this.board) {
+      this.board[cellIndexes].showColor = true;
+      this.board[cellIndexes].flipTeam = this.whosTurn;
       this.teams[this.whosTurn].score +=
-        this.board.cellsMap[cellIndexes].color === this.whosTurn ? 1 : 0;
+        this.board[cellIndexes].color === this.whosTurn ? 1 : 0;
     }
   }
 
@@ -135,6 +136,7 @@ class Game {
     this.whosTurn = "red";
     this.otherTeam = "blue";
     this.board = createBoard(options);
+    this.options = options;
   }
 }
 

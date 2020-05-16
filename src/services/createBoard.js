@@ -54,7 +54,7 @@ const createBoard = ({ blue, red }) => {
     }
   }
 
-  return { cellsMap, red, blue };
+  return cellsMap;
 };
 
 module.exports = createBoard;
