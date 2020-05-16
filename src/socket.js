@@ -48,9 +48,9 @@ const Socket = server => {
 
         // res.send(game.gameId);
       });
-      socket.on("setQlue", ({ gameId, numberOfWords, qlue }) => {
+      socket.on("setClue", ({ gameId, numberOfWords, clue }) => {
         const game = gamesControl.getGame(gameId);
-        game.setQlue(qlue);
+        game.setClue(clue);
         game.setNumberOfWords(numberOfWords);
         gameChange(gameId, game);
       });
@@ -99,7 +99,7 @@ const Socket = server => {
       });
 
       socket.on("sendMessage", ({ gameId, nickname, message }, callback) => {
-        io.to(gameId).emit("message", { nickname, message });
+        io.to(gameId).broadcast.emit("message", { nickname, message });
         callback();
       });
       console.log("new web socket connection");
