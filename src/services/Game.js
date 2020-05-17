@@ -22,9 +22,9 @@ class Game {
 
   constructor(gameAdmin) {
     this.gameId = Math.random()
-      .toString(36)
-      .slice(2)
-      .toUpperCase();
+      .toString(9)
+      .slice(15);
+
     this.players = {};
     this.teams = {
       red: newTeam(),
