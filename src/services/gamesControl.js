@@ -32,6 +32,7 @@ const joinGame = (gameId, nickname, id) => {
 const leaveGame = id => {
   if (users[id]) {
     const { game, nickname } = users[id];
+    game.leaveTeam(nickname);
     game.leaveGame(nickname);
 
     return { game };

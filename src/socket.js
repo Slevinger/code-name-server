@@ -75,7 +75,8 @@ const Socket = server => {
         if (player) {
           player.selectedCell = cellIndexes;
           const shoulShowColor =
-            game.teams[player.teamColor].players.length ===
+            game.teams[player.teamColor].players.filter(nick => players[nick])
+              .length ===
             teams[player.teamColor].players.reduce((acc, nick) => {
               return (
                 acc +
