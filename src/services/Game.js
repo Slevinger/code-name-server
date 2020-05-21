@@ -26,10 +26,10 @@ class Game {
       Math.random()
         .toString(9)
         .slice(15);
-    this.reset();
+    this.reset(gameAdmin);
   }
 
-  reset() {
+  reset(gameAdmin) {
     this.players = {};
     this.teams = {
       red: newTeam(),
@@ -146,11 +146,11 @@ class Game {
     // }
   }
   createBoard(options) {
+    this.reset();
     this.whosTurn = "red";
     this.otherTeam = "blue";
     this.board = createBoard(options);
     this.options = options;
-    this.reset();
   }
 }
 
