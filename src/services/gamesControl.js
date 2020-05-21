@@ -6,8 +6,8 @@ const sockets = {};
 const gameOptions = { red: 9, blue: 8 };
 // create game
 
-const createGame = gameAdmin => {
-  const game = new Game(gameAdmin);
+const createGame = (gameAdmin, gameId) => {
+  const game = new Game(gameAdmin, gameId);
   games[game.gameId] = game;
   return game;
 };
@@ -51,11 +51,19 @@ const joinTeam = (gameId, teamColor, nickname, role) => {
   return game;
 };
 
+const createBoard = gameId => {
+  const game = games[gameId];
+  game.createBoard(gameOptions);
+
+  return game;
+};
+
 const getGame = gameId => games[gameId];
 
 const Sockets = socketId => (socketId ? sockets[socketId] : sockets);
 
 module.exports = {
+  createBoard,
   createGame,
   joinGame,
   leaveGame,

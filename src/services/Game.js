@@ -20,10 +20,12 @@ class Game {
   otherTeam;
   options;
 
-  constructor(gameAdmin) {
-    this.gameId = Math.random()
-      .toString(9)
-      .slice(15);
+  constructor(gameAdmin, gameId) {
+    this.gameId =
+      gameId ||
+      Math.random()
+        .toString(9)
+        .slice(15);
 
     this.players = {};
     this.teams = {
@@ -33,6 +35,9 @@ class Game {
     this.hinters = [];
     this.playersHistory = {};
     this.gameAdmin = gameAdmin;
+    this.clue = "";
+    this.numberOfWords = "";
+    this.board = undefined;
   }
 
   joinGame(nickname) {
@@ -60,7 +65,7 @@ class Game {
   joinTeam(teamColor, nickname, role) {
     const player = this.players[nickname];
     const team = this.teams[teamColor];
-    console.log(this.teams);
+
     if (player) {
       if (player.teamColor) {
         this.leaveTeam(nickname);

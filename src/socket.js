@@ -26,14 +26,21 @@ const Socket = server => {
         callback();
       });
 
-      socket.on("createGame", ({ nickname }, callback) => {
-        console.log(nickname);
-        const game = gamesControl.createGame(nickname);
+      socket.on("createGame", ({ nickname, gameId }, callback) => {
+        const game = gamesControl.createGame(nickname, gameId);
         socket.join(game.gameId);
         gamesControl.joinGame(game.gameId, nickname, socket.id);
         gameChange(game.gameId, game);
 
         callback();
+
+        // res.send(game.gameId);
+      });
+
+      socket.on("newBoard", ({ gameId }) => {
+        const game = gamesControl.createBoard(gameId);
+
+        gameChange(game.gameId, game);
 
         // res.send(game.gameId);
       });
@@ -120,8 +127,7 @@ const Socket = server => {
         if (game) {
           io.to(game.gameId).emit("gameChange", game);
         }
-        console.log(game);
-        console.log(error);
+
         // if (!error) {
         //   io.to(game.gameId).emit("gameChange", game);
         //   io.emit("message", "a user has left");

@@ -62,7 +62,7 @@ app.post("/games/leave/:gameId/:nickname", (req, res) => {
 app.get("/games/:gameId", (req, res) => {
   const { gameId } = req.params;
   const game = gamesControl.getGame(gameId);
-  console.log(game);
+
   res.send(game);
 });
 
