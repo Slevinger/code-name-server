@@ -20,24 +20,22 @@ class Game {
   otherTeam;
   options;
 
-  constructor(gameAdmin, gameId) {
-    this.gameId =
-      gameId ||
-      Math.random()
-        .toString(9)
-        .slice(15);
+  constructor(gameAdmin) {
+    this.gameId = Math.random()
+      .toString(9)
+      .slice(15);
+    this.gameAdmin = gameAdmin;
+    this.players = {};
+    this.playersHistory = {};
+    this.hinters = [];
     this.reset(gameAdmin);
   }
 
-  reset(gameAdmin) {
-    this.players = {};
+  reset() {
     this.teams = {
       red: newTeam(),
       blue: newTeam()
     };
-    this.hinters = [];
-    this.playersHistory = {};
-    this.gameAdmin = gameAdmin;
     this.clue = "";
     this.numberOfWords = "";
     this.board = undefined;

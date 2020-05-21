@@ -6,8 +6,8 @@ const sockets = {};
 const gameOptions = { red: 9, blue: 8 };
 // create game
 
-const createGame = (gameAdmin, gameId) => {
-  const game = new Game(gameAdmin, gameId);
+const createGame = gameAdmin => {
+  const game = new Game(gameAdmin);
   games[game.gameId] = game;
   return game;
 };

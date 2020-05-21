@@ -26,8 +26,8 @@ const Socket = server => {
         callback();
       });
 
-      socket.on("createGame", ({ nickname, gameId }, callback) => {
-        const game = gamesControl.createGame(nickname, gameId);
+      socket.on("createGame", ({ nickname }, callback) => {
+        const game = gamesControl.createGame(nickname);
         socket.join(game.gameId);
         gamesControl.joinGame(game.gameId, nickname, socket.id);
         gameChange(game.gameId, game);
