@@ -73,7 +73,8 @@ const Socket = server => {
 
         const player = players[nickname];
         if (player) {
-          player.selectedCell = cellIndexes;
+          player.selectedCell =
+            cellIndexes === player.selectedCell ? null : cellIndexes;
           const shoulShowColor =
             game.teams[player.teamColor].players.filter(nick => players[nick])
               .length ===
