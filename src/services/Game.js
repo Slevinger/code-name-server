@@ -26,7 +26,10 @@ class Game {
       Math.random()
         .toString(9)
         .slice(15);
+    this.reset();
+  }
 
+  reset() {
     this.players = {};
     this.teams = {
       red: newTeam(),
@@ -147,6 +150,7 @@ class Game {
     this.otherTeam = "blue";
     this.board = createBoard(options);
     this.options = options;
+    this.reset();
   }
 }
 
